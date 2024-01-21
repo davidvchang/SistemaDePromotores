@@ -87,6 +87,7 @@
             this.prospectosCapturadosToolStripMenuItem.Name = "prospectosCapturadosToolStripMenuItem";
             this.prospectosCapturadosToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.prospectosCapturadosToolStripMenuItem.Text = "Prospectos Capturados";
+            this.prospectosCapturadosToolStripMenuItem.Click += new System.EventHandler(this.prospectosCapturadosToolStripMenuItem_Click);
             // 
             // evaluacionDelProspectoToolStripMenuItem
             // 

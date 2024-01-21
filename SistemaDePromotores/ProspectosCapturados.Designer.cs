@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.NombreProspecto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PrimerApellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SegundoApellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnVerDetalle = new System.Windows.Forms.Button();
             this.btnRegresar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -41,39 +37,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.NombreProspecto,
-            this.PrimerApellido,
-            this.SegundoApellido,
-            this.Estatus});
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(664, 253);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // NombreProspecto
-            // 
-            this.NombreProspecto.HeaderText = "Nombre del prospecto";
-            this.NombreProspecto.Name = "NombreProspecto";
-            this.NombreProspecto.Width = 200;
-            // 
-            // PrimerApellido
-            // 
-            this.PrimerApellido.HeaderText = "Primer Apellido";
-            this.PrimerApellido.Name = "PrimerApellido";
-            this.PrimerApellido.Width = 150;
-            // 
-            // SegundoApellido
-            // 
-            this.SegundoApellido.HeaderText = "Segundo Apellido";
-            this.SegundoApellido.Name = "SegundoApellido";
-            this.SegundoApellido.Width = 150;
-            // 
-            // Estatus
-            // 
-            this.Estatus.HeaderText = "Estatus";
-            this.Estatus.Name = "Estatus";
-            this.Estatus.Width = 120;
             // 
             // btnVerDetalle
             // 
@@ -104,6 +71,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ProspectosCapturados";
             this.Text = "ProspectosCapturados";
+            this.Load += new System.EventHandler(this.ProspectosCapturados_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
@@ -112,10 +80,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NombreProspecto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrimerApellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SegundoApellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estatus;
         private System.Windows.Forms.Button btnVerDetalle;
         private System.Windows.Forms.Button btnRegresar;
     }

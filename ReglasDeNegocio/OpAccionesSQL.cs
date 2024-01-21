@@ -94,6 +94,33 @@ namespace ReglasDeNegocio
         }
 
 
+        public DataTable CargarProspectosEnDataGridView(    )
+        {
+            
+            DataTable table = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(ConexionDB.CadenaConexion(sServidor, sUsuario, sContraseña)))
+            {
+                try
+                {
+                
+                    conexion.Open();
+                    string query = "SELECT Nombre, PrimerApellido, SegundoApellido, Estatus FROM Prospectos";
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conexion);
+                    adapter.Fill(table);
+                }
+                catch (Exception ex)
+                {
+                    sLastError = ex.Message;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+                return table;
+            }
+        }
+
+
 
     }
 }

@@ -215,5 +215,12 @@ namespace SistemaDePromotores
 
             
         }
+
+        private void prospectosCapturadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProspectosCapturados prospectosCapturados = new ProspectosCapturados();
+            this.Hide();
+            prospectosCapturados.ShowDialog();
+        }
     }
 }
