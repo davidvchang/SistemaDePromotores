@@ -115,7 +115,6 @@ namespace SistemaDePromotores
             }
         }
 
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             ListaDocumentos.Remove(listBox1.SelectedItem.ToString());
