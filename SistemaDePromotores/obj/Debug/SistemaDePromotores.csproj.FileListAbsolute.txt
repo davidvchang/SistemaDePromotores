@@ -1,0 +1,15 @@
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\bin\Debug\SistemaDePromotores.exe.config
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\bin\Debug\SistemaDePromotores.exe
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\bin\Debug\SistemaDePromotores.pdb
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\obj\Debug\SistemaDePromotores.csproj.AssemblyReference.cache
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\obj\Debug\SistemaDePromotores.csproj.SuggestedBindingRedirects.cache
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\obj\Debug\SistemaDePromotores.Properties.Resources.resources
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\obj\Debug\SistemaDePromotores.csproj.GenerateResource.cache
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\obj\Debug\SistemaDePromotores.csproj.CoreCompileInputs.cache
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\obj\Debug\SistemaDePromotores.exe
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\obj\Debug\SistemaDePromotores.pdb
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\obj\Debug\SistemaDePromotores.Inicio.resources
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\obj\Debug\SistemaDePromotores.ProspectosCapturados.resources
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\bin\Debug\ReglasDeNegocio.dll
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\bin\Debug\ReglasDeNegocio.pdb
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\SistemaDePromotores\obj\Debug\SistemaDePromotores.csproj.CopyComplete

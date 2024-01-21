@@ -1,0 +1,6 @@
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\ReglasDeNegocio\bin\Debug\ReglasDeNegocio.dll
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\ReglasDeNegocio\bin\Debug\ReglasDeNegocio.pdb
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\ReglasDeNegocio\obj\Debug\ReglasDeNegocio.csproj.AssemblyReference.cache
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\ReglasDeNegocio\obj\Debug\ReglasDeNegocio.csproj.CoreCompileInputs.cache
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\ReglasDeNegocio\obj\Debug\ReglasDeNegocio.dll
+G:\Carpetas\Documentos\Proyectos Programacion\Visual Studio\Sistema de Promotores\ReglasDeNegocio\obj\Debug\ReglasDeNegocio.pdb
