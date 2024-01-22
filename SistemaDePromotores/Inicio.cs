@@ -193,6 +193,7 @@ namespace SistemaDePromotores
             tbSegundoApellido.Clear();
             tbTelefono.Clear();
             listBox1.Items.Clear();
+            ListaDocumentos.Clear();
         }
 
         private void prospectosCapturadosToolStripMenuItem_Click(object sender, EventArgs e)
