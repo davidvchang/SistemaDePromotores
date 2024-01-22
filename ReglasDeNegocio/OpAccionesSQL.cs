@@ -103,7 +103,6 @@ namespace ReglasDeNegocio
             {
                 try
                 {
-                
                     conexion.Open();
                     string query = "SELECT ProspectoID, Nombre, PrimerApellido, SegundoApellido, Estatus FROM Prospectos";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conexion);
