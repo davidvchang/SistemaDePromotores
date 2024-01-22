@@ -26,7 +26,7 @@ namespace ReglasDeNegocio
 
 
         public Boolean AgregarProspecto(String NombreProspecto, String PrimerApellido, String SegundoApellido, String Calle, 
-                                        Int32 Numero, String Colonia, Int32 CodigoPostal, String Telefono, String RFC, String Status, String NombreDocumento, byte[] contenidoDocumento)
+                                        Int32 Numero, String Colonia, Int32 CodigoPostal, String Telefono, String RFC, String Status, List<string> NombresDocumentos, List<byte[]> ContenidosDocumentos)
         {
             Boolean bAllOk = true;
             using (SqlConnection conexion = new SqlConnection(ConexionDB.CadenaConexion(sServidor, sUsuario, sContraseña)))
@@ -47,7 +47,7 @@ namespace ReglasDeNegocio
                     int prospectoID = Convert.ToInt32(comando.ExecuteScalar());
 
                     // Guardar el documento asociado al prospecto.
-                    GuardarDocumentoEnBaseDeDatos(prospectoID, NombreDocumento, contenidoDocumento);
+                    GuardarDocumentoEnBaseDeDatos(prospectoID, NombresDocumentos, ContenidosDocumentos);
 
                 }
                 catch (Exception ex)
@@ -65,8 +65,7 @@ namespace ReglasDeNegocio
 
         }
 
-
-        private void GuardarDocumentoEnBaseDeDatos(int prospectoID, string nombreDocumento, byte[] contenidoDocumento)
+       public void GuardarDocumentoEnBaseDeDatos(int prospectoID, List<string> nombresDocumentos, List<byte[]> contenidosDocumentos)
         {
             using (SqlConnection conexion = new SqlConnection(ConexionDB.CadenaConexion(sServidor, sUsuario, sContraseña)))
             {
@@ -74,23 +73,25 @@ namespace ReglasDeNegocio
 
                 try
                 {
-                    string queryDocumento = $"INSERT INTO Documentos(ProspectoID, NombreDocumento, Documento) " +
-                                                        $"VALUES ({prospectoID}, '{nombreDocumento}', @ContenidoDocumento);";
-                    SqlCommand comando = new SqlCommand(queryDocumento, conexion);
-                    comando.Parameters.Add("@ContenidoDocumento", System.Data.SqlDbType.VarBinary, -1).Value = contenidoDocumento;
-                    comando.ExecuteNonQuery();
+                    for (int i = 0; i < nombresDocumentos.Count; i++)
+                    {
+                        string queryDocumento = $"INSERT INTO Documentos(ProspectoID, NombreDocumento, Documento) " +
+                                                $"VALUES (@ProspectoID, '{nombresDocumentos[i]}', @ContenidoDocumento{i});";
+                        SqlCommand comando = new SqlCommand(queryDocumento, conexion);
+                        comando.Parameters.Add($"@ProspectoID", SqlDbType.Int).Value = prospectoID;
+                        comando.Parameters.Add($"@ContenidoDocumento{i}", SqlDbType.VarBinary, -1).Value = contenidosDocumentos[i];
+                        comando.ExecuteNonQuery();
+                    }
                 }
                 catch (Exception ex)
                 {
                     sLastError = ex.Message;
                 }
-
                 finally
                 {
                     conexion.Close();
                 }
             }
-            
         }
 
 
@@ -172,6 +173,35 @@ namespace ReglasDeNegocio
             }
 
             return documentos;
+        }
+
+        public Boolean Evaluar(Int32 ProspectoID, String Status, String ObservacionesRechazado)
+        {
+            Boolean bAllOk = true;
+            using (SqlConnection conexion = new SqlConnection(ConexionDB.CadenaConexion(sServidor, sUsuario, sContraseña)))
+            {
+                try
+                {
+                    conexion.Open();
+
+                    string query = $"UPDATE Prospectos SET Estatus = '{Status}', " +
+                                                $"ObservacionesRechazo = '{ObservacionesRechazado}' " +
+                                                $"WHERE ProspectoID = {ProspectoID}";
+                    SqlCommand comando = new SqlCommand(query, conexion);
+                    comando.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    bAllOk = false;
+                    sLastError = ex.Message;
+                }
+
+                finally
+                {
+                    conexion.Close();
+                }
+                return bAllOk;
+            }
         }
 
     }

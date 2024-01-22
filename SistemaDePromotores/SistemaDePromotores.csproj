@@ -55,6 +55,12 @@
     <Compile Include="DetallesProspectos.Designer.cs">
       <DependentUpon>DetallesProspectos.cs</DependentUpon>
     </Compile>
+    <Compile Include="EvaluacionProspectos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EvaluacionProspectos.Designer.cs">
+      <DependentUpon>EvaluacionProspectos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     </Compile>
     <EmbeddedResource Include="DetallesProspectos.resx">
       <DependentUpon>DetallesProspectos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EvaluacionProspectos.resx">
+      <DependentUpon>EvaluacionProspectos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>

@@ -11,10 +11,9 @@ using System.Windows.Forms;
 
 namespace SistemaDePromotores
 {
-    public partial class DetallesProspectos : Form
+    public partial class EvaluacionProspectos : Form
     {
-        
-        public DetallesProspectos(int prospectoID, ProspectosCapturados prospectosCapturados)
+        public EvaluacionProspectos(int prospectoID, ProspectosCapturados prospectosCapturados)
         {
             InitializeComponent();
             this.prospectoID = prospectoID;
@@ -26,31 +25,29 @@ namespace SistemaDePromotores
 
         public int prospectoID;
 
+        private void rbRechazar_CheckedChanged(object sender, EventArgs e)
+        {
+            tbObservacioneRechazo.Enabled = true;
+            tbObservacioneRechazo.Visible = true;
+            this.BackColor = Color.Brown;
+        }
 
-        private void DetallesProspectos_Load(object sender, EventArgs e)
+        private void rbAutorizar_CheckedChanged(object sender, EventArgs e)
+        {
+            tbObservacioneRechazo.Enabled = false;
+            tbObservacioneRechazo.Visible = false;
+            this.BackColor = Color.ForestGreen;
+        }
+
+        private void EvaluacionProspectos_Load(object sender, EventArgs e)
         {
             CargarInformacionProspecto();
 
-            if(tbEstatus.Text == "ENVIADO")
-            {
-                tbEstatus.BackColor = Color.Chocolate;
-                tbObservacioneRechazo.Visible = false;
-            }
-            else if(tbEstatus.Text == "AUTORIZADO")
-            {
-                tbEstatus.BackColor = Color.SeaGreen;
-                tbObservacioneRechazo.Visible = false;
-            }
-            else
-            {
-                tbEstatus.BackColor = Color.Red;
-                tbObservacioneRechazo.Visible = true;
-            }
         }
 
         void CargarInformacionProspecto()
         {
-            
+
             OpAccionesSQL opAccionesSQL = new OpAccionesSQL();
             DataTable prospectoInfo = opAccionesSQL.ObtenerInformacionProspecto(prospectoID);
 
@@ -68,6 +65,22 @@ namespace SistemaDePromotores
                 tbRFC.Text = prospectoInfo.Rows[0]["RFC"].ToString();
                 tbEstatus.Text = prospectoInfo.Rows[0]["Estatus"].ToString();
                 tbObservacioneRechazo.Text = prospectoInfo.Rows[0]["ObservacionesRechazo"].ToString();
+
+                if (tbEstatus.Text == "ENVIADO")
+                {
+                    tbEstatus.BackColor = Color.Yellow;
+                    tbObservacioneRechazo.Visible = false;
+                }
+                else if (tbEstatus.Text == "AUTORIZADO")
+                {
+                    tbEstatus.BackColor = Color.Green;
+                    tbObservacioneRechazo.Visible = false;
+                }
+                else
+                {
+                    tbEstatus.BackColor = Color.Red;
+                    tbObservacioneRechazo.Visible = true;
+                }
 
                 //Para cargar los Documentos
                 opAccionesSQL.ObtenerDocumentosPorProspectoID(prospectoID);
@@ -87,7 +100,7 @@ namespace SistemaDePromotores
             {
                 MessageBox.Show("No se encontró información para el prospecto con ID: " + prospectoID);
             }
-           
+
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -95,6 +108,30 @@ namespace SistemaDePromotores
             ProspectosCapturados prospectosCapturados = (ProspectosCapturados)Application.OpenForms["prospectosCapturados"];
             this.Hide();
             prospectosCapturados.Visible = true;
+        }
+
+        private void btnEvaluar_Click(object sender, EventArgs e)
+        {
+            OpAccionesSQL accionesSQL = new OpAccionesSQL();
+            string Opcion = "";
+            if(rbAutorizar.Checked == true)
+            {
+                Opcion = "Autorizado";
+            }
+            else if(rbRechazar.Checked == true)
+            {
+                Opcion = "Rechazado";
+            }
+
+            if(accionesSQL.Evaluar(prospectoID, Opcion, tbObservacioneRechazo.Text))
+            {
+                MessageBox.Show("Evaluado Correctamente.");
+                CargarInformacionProspecto();
+            }
+            else
+            {
+                MessageBox.Show("Ha ocurrido un error en la evaluacion. " + accionesSQL.sLastError);
+            }
         }
     }
 }

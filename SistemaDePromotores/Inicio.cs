@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,7 +26,7 @@ namespace SistemaDePromotores
         int contadorBoton = 1;
 
 
-        List<string> ListaDocumentos = new List<string>();
+        public List<string> ListaDocumentos = new List<string>();
 
 
 
@@ -106,13 +107,37 @@ namespace SistemaDePromotores
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
 
-                
+
                 // Obtener la ruta completa del archivo seleccionado.
                 rutaDocumentoSeleccionado = openFileDialog.FileName;
+                string nombreDocumento = Path.GetFileName(openFileDialog.FileName);
 
                 // Mostrar el nombre del documento en el TextBox.
-                tbDocumento.Text = Path.GetFileName(rutaDocumentoSeleccionado);
+                //tbDocumento.Text = Path.GetFileName(rutaDocumentoSeleccionado);
+                //listBox1.Items.Add(Path.GetFileName(rutaDocumentoSeleccionado));
+                listBox1.Items.Add(nombreDocumento);
+                tbDocumento.Text = nombreDocumento;
+
+                // Agrega el nombre del archivo a la lista
+                ListaDocumentos.Add(rutaDocumentoSeleccionado);
+
+                //ListaDocumentos.Add(nombreDocumento);
+                
+
+
+
+                //// Obtener la ruta completa del archivo seleccionado.
+                //rutaDocumentoSeleccionado = openFileDialog.FileName;
+                //string nombreDocumento = Path.GetFileName(openFileDialog.FileName);
+
+                //// Mostrar el nombre del documento en el TextBox y agregar a la lista
+                //tbDocumento.Text = nombreDocumento;
+                //listBox1.Items.Add(nombreDocumento);
+                //ListaDocumentos.Add(nombreDocumento);
+
+
             }
+
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -187,38 +212,69 @@ namespace SistemaDePromotores
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
+
             OpAccionesSQL opAccionesSQL = new OpAccionesSQL();
 
             string status = "Enviado";
-            string nombreDocumento = btnCargarDocumento.Text;
 
-            if(tbDocumento.Text == "" || tbNombreProspecto.Text == "" || tbPrimerApellido.Text == "" || tbSegundoApellido.Text == "" || tbCalle.Text == "" || 
-                                               tbNumero.Text == "" || tbColonia.Text == "" || tbCodigoPostal.Text == "")
+            if (tbDocumento.Text == "" || tbNombreProspecto.Text == "" || tbPrimerApellido.Text == "" || tbSegundoApellido.Text == "" || tbCalle.Text == "" ||
+                tbNumero.Text == "" || tbColonia.Text == "" || tbCodigoPostal.Text == "")
             {
-                MessageBox.Show("Debe de llenar todos los campos e ingresar un documento.");
+                MessageBox.Show("Debe llenar todos los campos e ingresar al menos un documento.");
             }
             else
             {
-                // Leer el contenido del archivo.
-                byte[] contenidoDocumento = File.ReadAllBytes(rutaDocumentoSeleccionado);
-                if (opAccionesSQL.AgregarProspecto(tbNombreProspecto.Text, tbPrimerApellido.Text, tbSegundoApellido.Text, tbCalle.Text,
-                                                                Convert.ToInt32(tbNumero.Text), tbColonia.Text, Convert.ToInt32(tbCodigoPostal.Text), tbTelefono.Text, tbRFC.Text, status, tbDocumento.Text, contenidoDocumento))
+                if (ListaDocumentos.Count == 0)
                 {
-                    MessageBox.Show("Prospecto enviado correctamente");
+                    MessageBox.Show("Debe cargar al menos un documento antes de enviar el prospecto.");
+                    return;
                 }
 
+                // Crear una lista para almacenar los contenidos de los documentos
+                List<byte[]> contenidosDocumentos = new List<byte[]>();
+
+                // Leer el contenido de cada documento y almacenarlo en la lista
+                foreach (string rutaDocumento in ListaDocumentos)
+                {
+                    // Leer el contenido del archivo utilizando la ruta completa
+                    byte[] contenidoDocumento = File.ReadAllBytes(rutaDocumento);
+
+                    // Agregar el contenido del documento a la lista
+                    contenidosDocumentos.Add(contenidoDocumento);
+                }
+
+                if (opAccionesSQL.AgregarProspecto(tbNombreProspecto.Text, tbPrimerApellido.Text, tbSegundoApellido.Text, tbCalle.Text,
+                    Convert.ToInt32(tbNumero.Text), tbColonia.Text, Convert.ToInt32(tbCodigoPostal.Text), tbTelefono.Text, tbRFC.Text, status, ListaDocumentos, contenidosDocumentos))
+                {
+                    MessageBox.Show("Prospecto enviado correctamente");
+                    Limpiar();
+                }
                 else
                 {
                     MessageBox.Show("Ha ocurrido un error. " + opAccionesSQL.sLastError);
+                    Limpiar();
                 }
             }
+        }
 
-            
+        void Limpiar()
+        {
+            tbCalle.Clear();
+            tbCodigoPostal.Clear();
+            tbColonia.Clear();
+            tbDocumento.Clear();
+            tbNombreProspecto.Clear();
+            tbNumero.Clear();
+            tbPrimerApellido.Clear();
+            tbRFC.Clear();
+            tbSegundoApellido.Clear();
+            tbTelefono.Clear();
+            listBox1.Items.Clear();
         }
 
         private void prospectosCapturadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProspectosCapturados prospectosCapturados = new ProspectosCapturados();
+            ProspectosCapturados prospectosCapturados = new ProspectosCapturados(this);
             this.Hide();
             prospectosCapturados.ShowDialog();
         }

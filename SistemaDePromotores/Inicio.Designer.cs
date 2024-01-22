@@ -31,7 +31,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prospectosCapturadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.evaluacionDelProspectoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -76,8 +75,7 @@
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.prospectosCapturadosToolStripMenuItem,
-            this.evaluacionDelProspectoToolStripMenuItem});
+            this.prospectosCapturadosToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
@@ -88,12 +86,6 @@
             this.prospectosCapturadosToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.prospectosCapturadosToolStripMenuItem.Text = "Prospectos Capturados";
             this.prospectosCapturadosToolStripMenuItem.Click += new System.EventHandler(this.prospectosCapturadosToolStripMenuItem_Click);
-            // 
-            // evaluacionDelProspectoToolStripMenuItem
-            // 
-            this.evaluacionDelProspectoToolStripMenuItem.Name = "evaluacionDelProspectoToolStripMenuItem";
-            this.evaluacionDelProspectoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.evaluacionDelProspectoToolStripMenuItem.Text = "Evaluacion del Prospecto";
             // 
             // label1
             // 
@@ -366,6 +358,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Inicio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
             this.Load += new System.EventHandler(this.Inicio_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -401,7 +394,6 @@
         private System.Windows.Forms.TextBox tbTelefono;
         private System.Windows.Forms.TextBox tbRFC;
         private System.Windows.Forms.ToolStripMenuItem prospectosCapturadosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem evaluacionDelProspectoToolStripMenuItem;
         private System.Windows.Forms.TextBox tbDocumento;
         private System.Windows.Forms.Button btnAgregarMas;
         private System.Windows.Forms.Button btnCargarDocumento;

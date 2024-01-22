@@ -13,10 +13,13 @@ namespace SistemaDePromotores
 {
     public partial class ProspectosCapturados : Form
     {
-        public ProspectosCapturados()
+        public ProspectosCapturados(Inicio inicio)
         {
             InitializeComponent();
+            this.inicio = inicio;
         }
+
+        public Inicio inicio;
 
         private void ProspectosCapturados_Load(object sender, EventArgs e)
         {
@@ -47,7 +50,7 @@ namespace SistemaDePromotores
 
             if (prospectoID != -1)
             {
-                DetallesProspectos detallesProspectos = new DetallesProspectos(prospectoID);
+                DetallesProspectos detallesProspectos = new DetallesProspectos(prospectoID, this);
                 this.Hide();
                 detallesProspectos.ShowDialog();
             }
@@ -69,14 +72,54 @@ namespace SistemaDePromotores
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                btnVerDetalle.Enabled = true;
+                // Obtener el valor del campo Estatus de la fila seleccionada
+                string estatus = dataGridView1.SelectedRows[0].Cells["Estatus"].Value.ToString();
+                if(estatus == "Enviado")
+                {
+                    btnVerDetalle.Enabled = true;
+                    btnEvaluar.Enabled = true;
+                }
+
+                if (estatus == "Autorizado" || estatus == "Rechazado")
+                {
+                    btnVerDetalle.Enabled = true;
+                    btnEvaluar.Enabled = false;
+                }
+
+
             }
             else
             {
                 btnVerDetalle.Enabled = false;
+                btnEvaluar.Enabled = false;
             }
+        }
+
+        private void btnEvaluar_Click(object sender, EventArgs e)
+        {
+            int prospectoID = ObtenerProspectoIDSeleccionado();
+
+            if (prospectoID != -1)
+            {
+                EvaluacionProspectos evaluacionProspectos = new EvaluacionProspectos(prospectoID, this);
+                this.Hide();
+                evaluacionProspectos.ShowDialog();
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Inicio inicio = (Inicio)Application.OpenForms["inicio"];
+            this.Hide();
+            inicio.ShowDialog();
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            CargarDatosEnDataGridView();
         }
     }
 }
