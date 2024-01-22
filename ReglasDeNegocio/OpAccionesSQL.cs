@@ -104,7 +104,7 @@ namespace ReglasDeNegocio
                 {
                 
                     conexion.Open();
-                    string query = "SELECT Nombre, PrimerApellido, SegundoApellido, Estatus FROM Prospectos";
+                    string query = "SELECT ProspectoID, Nombre, PrimerApellido, SegundoApellido, Estatus FROM Prospectos";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conexion);
                     adapter.Fill(table);
                 }
@@ -120,7 +120,59 @@ namespace ReglasDeNegocio
             }
         }
 
+        public DataTable ObtenerInformacionProspecto(int prospectoID)
+        {
+            DataTable dataTable = new DataTable();
 
+            using (SqlConnection conexion = new SqlConnection(ConexionDB.CadenaConexion(sServidor, sUsuario, sContraseña)))
+            {
+                try
+                {
+                    conexion.Open();
+
+                    string query = $"SELECT * FROM Prospectos WHERE ProspectoID = {prospectoID}";
+                    SqlCommand comando = new SqlCommand(query, conexion);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al obtener información del prospecto: {ex.Message}");
+                }
+            }
+
+            return dataTable;
+        }
+
+        public DataTable ObtenerDocumentosPorProspectoID(int prospectoID)
+        {
+            DataTable documentos = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(ConexionDB.CadenaConexion(sServidor, sUsuario, sContraseña)))
+            {
+                try
+                {
+                    conexion.Open();
+
+                    string query = $"SELECT * FROM Documentos WHERE ProspectoID = {prospectoID}";
+                    SqlCommand comando = new SqlCommand(query, conexion);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
+                    {
+                        adapter.Fill(documentos);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error al obtener documentos del prospecto: {ex.Message}");
+                }
+            }
+
+            return documentos;
+        }
 
     }
 }
