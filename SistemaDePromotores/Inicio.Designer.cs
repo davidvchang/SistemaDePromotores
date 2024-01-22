@@ -52,11 +52,8 @@
             this.tbCodigoPostal = new System.Windows.Forms.TextBox();
             this.tbTelefono = new System.Windows.Forms.TextBox();
             this.tbRFC = new System.Windows.Forms.TextBox();
-            this.tbDocumento = new System.Windows.Forms.TextBox();
-            this.btnAgregarMas = new System.Windows.Forms.Button();
             this.btnCargarDocumento = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnEliminar = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +80,7 @@
             // prospectosCapturadosToolStripMenuItem
             // 
             this.prospectosCapturadosToolStripMenuItem.Name = "prospectosCapturadosToolStripMenuItem";
-            this.prospectosCapturadosToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.prospectosCapturadosToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.prospectosCapturadosToolStripMenuItem.Text = "Prospectos Capturados";
             this.prospectosCapturadosToolStripMenuItem.Click += new System.EventHandler(this.prospectosCapturadosToolStripMenuItem_Click);
             // 
@@ -268,26 +265,6 @@
             this.tbRFC.Size = new System.Drawing.Size(111, 20);
             this.tbRFC.TabIndex = 21;
             // 
-            // tbDocumento
-            // 
-            this.tbDocumento.Enabled = false;
-            this.tbDocumento.Location = new System.Drawing.Point(12, 289);
-            this.tbDocumento.Name = "tbDocumento";
-            this.tbDocumento.Size = new System.Drawing.Size(325, 20);
-            this.tbDocumento.TabIndex = 23;
-            // 
-            // btnAgregarMas
-            // 
-            this.btnAgregarMas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarMas.Location = new System.Drawing.Point(491, 289);
-            this.btnAgregarMas.Name = "btnAgregarMas";
-            this.btnAgregarMas.Size = new System.Drawing.Size(24, 23);
-            this.btnAgregarMas.TabIndex = 24;
-            this.btnAgregarMas.Text = "+";
-            this.btnAgregarMas.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAgregarMas.UseVisualStyleBackColor = true;
-            this.btnAgregarMas.Click += new System.EventHandler(this.btnAgregarMas_Click);
-            // 
             // btnCargarDocumento
             // 
             this.btnCargarDocumento.Location = new System.Drawing.Point(351, 289);
@@ -302,24 +279,12 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // btnEliminar
-            // 
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Location = new System.Drawing.Point(323, 326);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(24, 23);
-            this.btnEliminar.TabIndex = 26;
-            this.btnEliminar.Text = "-";
-            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 326);
+            this.listBox1.Location = new System.Drawing.Point(12, 289);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(305, 95);
+            this.listBox1.Size = new System.Drawing.Size(328, 95);
             this.listBox1.TabIndex = 27;
             // 
             // Inicio
@@ -329,10 +294,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(559, 478);
             this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.tbDocumento);
             this.Controls.Add(this.tbSegundoApellido);
-            this.Controls.Add(this.btnAgregarMas);
             this.Controls.Add(this.btnCargarDocumento);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
@@ -394,11 +356,8 @@
         private System.Windows.Forms.TextBox tbTelefono;
         private System.Windows.Forms.TextBox tbRFC;
         private System.Windows.Forms.ToolStripMenuItem prospectosCapturadosToolStripMenuItem;
-        private System.Windows.Forms.TextBox tbDocumento;
-        private System.Windows.Forms.Button btnAgregarMas;
         private System.Windows.Forms.Button btnCargarDocumento;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.ListBox listBox1;
     }
 }

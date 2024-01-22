@@ -31,40 +31,6 @@ namespace SistemaDePromotores
 
 
         string rutaDocumentoSeleccionado = "";
-        private void btnAgregarMas_Click(object sender, EventArgs e)
-        {
-            // Crea un nuevo TextBox
-            TextBox nuevoTextBox = new TextBox();
-            Button nuevoBotonCargar = new Button();
-
-            // Configura propiedades del nuevo TextBox y Boton
-            nuevoTextBox.Name = "textBox" + contadorTextBox.ToString();
-            nuevoTextBox.Enabled = false;
-            nuevoTextBox.Location = new System.Drawing.Point(tbDocumento.Location.X, tbDocumento.Location.Y + (contadorTextBox * 30));
-            nuevoTextBox.Size = tbDocumento.Size;
-
-            nuevoBotonCargar.Name = "btnCargarDocumento" + contadorBoton.ToString();
-            nuevoBotonCargar.Text = "Cargar Documento";
-            nuevoBotonCargar.Location = new System.Drawing.Point(btnCargarDocumento.Location.X, btnCargarDocumento.Location.Y + (contadorBoton * 30));
-            nuevoBotonCargar.Size = btnCargarDocumento.Size;
-
-            // Suscribe el evento Click al nuevo botón "Cargar Documento"
-            nuevoBotonCargar.Click += btnCargarDocumento_Click;
-
-            // Agrega el nuevo TextBox y boton al formulario
-            this.Controls.Add(nuevoTextBox);
-            this.Controls.Add(nuevoBotonCargar);
-
-            // Incrementa el contador para el siguiente TextBox y boton
-            contadorTextBox++;
-            contadorBoton++;
-
-            btnSalir.Location = new System.Drawing.Point(btnSalir.Location.X, btnSalir.Location.Y + 30);
-            btnEnviar.Location = new System.Drawing.Point(btnEnviar.Location.X, btnEnviar.Location.Y + 30);
-            // Ajusta la altura del formulario
-            this.Height += 30;
-
-        }
 
         private void tbNumero_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -112,46 +78,18 @@ namespace SistemaDePromotores
                 rutaDocumentoSeleccionado = openFileDialog.FileName;
                 string nombreDocumento = Path.GetFileName(openFileDialog.FileName);
 
-                // Mostrar el nombre del documento en el TextBox.
-                //tbDocumento.Text = Path.GetFileName(rutaDocumentoSeleccionado);
-                //listBox1.Items.Add(Path.GetFileName(rutaDocumentoSeleccionado));
-                listBox1.Items.Add(nombreDocumento);
-                tbDocumento.Text = nombreDocumento;
+               
 
                 // Agrega el nombre del archivo a la lista
                 ListaDocumentos.Add(rutaDocumentoSeleccionado);
 
-                //ListaDocumentos.Add(nombreDocumento);
-                
-
-
-
-                //// Obtener la ruta completa del archivo seleccionado.
-                //rutaDocumentoSeleccionado = openFileDialog.FileName;
-                //string nombreDocumento = Path.GetFileName(openFileDialog.FileName);
-
-                //// Mostrar el nombre del documento en el TextBox y agregar a la lista
-                //tbDocumento.Text = nombreDocumento;
-                //listBox1.Items.Add(nombreDocumento);
-                //ListaDocumentos.Add(nombreDocumento);
-
+                // Mostrar el nombre del documento en el TextBox.
+                listBox1.Items.Add(nombreDocumento);
 
             }
 
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            ListaDocumentos.Remove(listBox1.SelectedItem.ToString());
-            listBox1.DataSource = null;
-            listBox1.DataSource = ListaDocumentos;
-
-
-            if (listBox1.Items.Count == 0)
-            {
-                btnEliminar.Enabled = false;
-            }
-        }
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -166,17 +104,11 @@ namespace SistemaDePromotores
                 tbCalle.Clear();
                 tbCodigoPostal.Clear();
                 tbColonia.Clear();
-                tbDocumento.Clear();
                 tbNumero.Clear();
                 tbTelefono.Clear();
                 tbRFC.Clear();
                 ListaDocumentos.Clear();
                 listBox1.DataSource = null;
-
-                if (listBox1.Items.Count == 0)
-                {
-                    btnEliminar.Enabled = false;
-                }
             }
         }
 
@@ -200,14 +132,6 @@ namespace SistemaDePromotores
                 Application.Exit();
             }
 
-            if (listBox1.Items.Count == 0)
-            {
-                btnEliminar.Enabled = false;
-            }
-            else
-            {
-                btnEliminar.Enabled = true;
-            }
         }
 
         private void btnEnviar_Click(object sender, EventArgs e)
@@ -217,7 +141,7 @@ namespace SistemaDePromotores
 
             string status = "Enviado";
 
-            if (tbDocumento.Text == "" || tbNombreProspecto.Text == "" || tbPrimerApellido.Text == "" || tbSegundoApellido.Text == "" || tbCalle.Text == "" ||
+            if (listBox1.Items.Count == null || tbNombreProspecto.Text == "" || tbPrimerApellido.Text == "" || tbSegundoApellido.Text == "" || tbCalle.Text == "" ||
                 tbNumero.Text == "" || tbColonia.Text == "" || tbCodigoPostal.Text == "")
             {
                 MessageBox.Show("Debe llenar todos los campos e ingresar al menos un documento.");
@@ -262,7 +186,6 @@ namespace SistemaDePromotores
             tbCalle.Clear();
             tbCodigoPostal.Clear();
             tbColonia.Clear();
-            tbDocumento.Clear();
             tbNombreProspecto.Clear();
             tbNumero.Clear();
             tbPrimerApellido.Clear();
@@ -278,5 +201,6 @@ namespace SistemaDePromotores
             this.Hide();
             prospectosCapturados.ShowDialog();
         }
+
     }
 }
